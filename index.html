@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather App</title>
+</head>
+<style>
+    * {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .container {
+        height: 300px;
+        width: fit-content;
+        padding: 2rem;
+        margin: 100px auto;
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .weather-icon {
+        color: yellow;
+        font-size: 50px;
+    }
+
+    .weather-icon i {
+        animation: rotate 7s infinite linear;
+    }
+
+    .city-name, .weather-temp {
+        font-size: 30px;
+    }
+    
+    .weather-stats * {
+        margin-top: 5px;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg) scale(1, 1);
+        }
+
+        50% {
+            transform: rotate(360deg) scale(1.2, 1.2);
+        }
+
+        0% {
+            transform: rotate(0deg) scale(1, 1);
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="weather-icon"><i class="fas fa-sun"></i></div>
+        <div class="weather-stats">
+            <div class="city-name">{%city%}, {%country%}</div>
+            <div class="weather-time" id="time">WED | OCT 25 | 11:12AM</div>
+            <div class="weather-temp">{%temp&}&deg;C</div>
+            <div class="temp-range">MIN {%temp_min%}&deg;C | MAX {%temp_max%}&deg;C</div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const getTime = () => {
+        const date = new Date();
+        let day = days[date.getDay()];
+        let month = months[date.getMonth()];
+        let d = date.getDate();
+        let time = `${date.getHours()}:${date.getMinutes()}`;
+        let dateString = `${day} | ${month} ${d} | ${time}`;
+        return dateString;
+    }
+    document.getElementById("time").innerHTML = getTime();
+</script>
+</html>

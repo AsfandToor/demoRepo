@@ -1,0 +1,5 @@
+You will need dependencies to run this app
+Node should be installed
+Move to the root directory and enter "npm install"
+After that start the server by "node script.js"
+Open Browser and type url "localhost:8000"
